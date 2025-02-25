@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Pollution Awareness</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: hwb(70 89% 8%);
+            text-align: center;
+        }
+        header {
+            background: hsl(116, 44%, 67%);
+            color: black;
+            padding: 1em;
+        }
+        nav {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown {
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background: #333;
+            color: white;
+            padding: 10px;
+            position: relative;
+            width: 100%;
+        }     
+    </style>     
+</head>
+<body>
+    <header>
+        <h1>Air Pollution Awareness</h1>
+        <nav>
+            <div class="dropdown">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
+                    <a href="#home">Home</a>
+                    <a href="#causes">Causes & Effects</a>
+                    <a href="#solutions">Solutions</a>
+                    <a href="#aqi">AQI Checker</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <section id="home">
+        <h2>What is Air Pollution?</h2>
+        <p id="home-content">Air pollution is contamination of the indoor or outdoor environment by any chemical, physical or biological agent that modifies the natural characteristics of the atmosphere</p>
+    </section>
+    
+    <section id="causes">
+        <h2>Causes & Effects</h2>
+        <p id="causes-content">Causes of Air Pollution</p>
+        <h3>Burning of Fossil Fuels</h3>
+        <p>The combustion of fossil fuels emits a large amount of sulphur dioxide. Carbon monoxide released by incomplete combustion of fossil fuels also results in air pollution.</p>
+        <h3>Automobiles</h3>
+        <p>The gases emitted from vehicles such as jeeps, trucks, cars, buses, etc. pollute the environment. These are the major sources of greenhouse gases and also result in diseases among individuals.</p>
+        <h3>Agricultural Activities</h3>
+        <p>Ammonia is one of the most hazardous gases emitted during agricultural activities. The insecticides, pesticides and fertilisers emit harmful chemicals in the atmosphere and contaminate it.</p>
+        <h3>Factories and Industries</h3>
+        <p>Factories and industries are the main source of carbon monoxide, organic compounds, hydrocarbons and chemicals. These are released into the air, degrading its quality.</p>
+        <h3>Mining Activities</h3>
+        <p>In the mining process, the minerals below the earth are extracted using large pieces of equipment. The dust and chemicals released during the process not only pollute the air, but also deteriorate the health of the workers and people living in the nearby areas.</p>
+    </section>
+    
+    <section id="solutions">
+        <h2>Solutions</h2>
+        <h3>Energy</h3> 
+        <p>Use energy-efficient devices like CFLs, turn off appliances when not in use, and use fans instead of air conditioners.</p>
+        <h3>Burning fossil fuels</h3>
+        <p>Burn less coal and use clean energy sources like solar, wind, and geothermal.</p>
+        <h3>Other actions</h3> 
+        <p>Recycle and reuse, avoid plastic bags, avoid crackers, support local air quality initiatives, support clean air plans in your city, and contribute to efforts to protect the environment.</p>
+        <h3>Policies</h3> 
+        <p>Develop city-level clean air plans, implement strategies to reduce air pollution, manage waste including hazardous waste, and reduce short-lived climate pollutants.</p>
+    </section>
+    
+    <section id="aqi">
+        <h2>Check Air Quality Index (AQI)</h2>
+        <input type="text" id="city" placeholder="Bangalore">
+        <button onclick="getAQI()">Check AQI</button>
+        <p id="aqi-result"></p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Air Pollution Awareness</p>
+    </footer>
+</body>
+</html>

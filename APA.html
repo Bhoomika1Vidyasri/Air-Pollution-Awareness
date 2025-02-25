@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Pollution Awareness</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: hwb(70 89% 8%);
+            text-align: center;
+        }
+        header {
+            background: hsl(116, 44%, 67%);
+            color: black;
+            padding: 1em;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: black;
+            text-decoration: none;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background: #333;
+            color: white;
+            padding: 10px;
+            position: relative;
+            width: 100%;
+        }     
+    </style>     
+</head>
+        <body>
+            <header>
+                <h1>Air Pollution Awareness</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#causes">Causes & Effects</a></li>
+                        <li><a href="#solutions">Solutions</a></li>
+                        <li><a href="#aqi">AQI Checker</a></li>
+                    </ul>
+                </nav>
+            </header>
+            
+            <section id="home">
+                <h2>What is Air Pollution?</h2>
+                <p id="home-content">Air pollution is contamination of the indoor or outdoor environment by any chemical, physical or biological agent that modifies the natural characteristics of the atmosphere</p>
+            </section>
+            
+            <section id="causes">
+                <h2>Causes & Effects</h2>
+                <p id="causes-content">Causes of Air Pollution
+                    Following are the important causes of air pollution:
+                    
+                    <h3>Burning of Fossil Fuels</h3>
+                    The combustion of fossil fuels emits a large amount of sulphur dioxide. Carbon monoxide released by incomplete combustion of fossil fuels also results in air pollution.
+                    
+                    <h3>Automobiles</h3>
+                    The gases emitted from vehicles such as jeeps, trucks, cars, buses, etc. pollute the environment. These are the major sources of greenhouse gases and also result in diseases among individuals.
+                    
+                    <h3>Agricultural Activities</h3>
+                    Ammonia is one of the most hazardous gases emitted during agricultural activities. The insecticides, pesticides and fertilisers emit harmful chemicals in the atmosphere and contaminate it.
+                    
+                    <h3>Factories and Industries</h3>
+                    Factories and industries are the main source of carbon monoxide, organic compounds, hydrocarbons and chemicals. These are released into the air, degrading its quality.
+                    
+                    <h3>Mining Activities</h3>
+                    In the mining process, the minerals below the earth are extracted using large pieces of equipment. The dust and chemicals released during the process not only pollute the air, but also deteriorate the health of the workers and people living in the nearby areas.</p>
+            </section>
+            
+            <section id="solutions">
+                <h2>Solutions</h2>
+                <p id="solutions-content">
+                    <h3>Energy</h3> 
+                    <ol>
+                    <li>Use energy-efficient devices like CFLs</li>
+                    <li>Turn off appliances when not in use</li>
+                    <li>Use fans instead of air conditioners</li>
+                </ol>
+                    <h3>Burning fossil fuels</h3>
+                    Burn less coal
+                    Use clean energy sources like solar, wind, and geothermal
+                    <h3>Other actions</h3> 
+                    Recycle and reuse
+                    Avoid plastic bags
+                    Avoid crackers
+                    Support local air quality initiatives
+                    Support clean air plans in your city
+                    Contribute to efforts to protect the environment
+                    <h3>Policies</h3> 
+                    Develop city-level clean air plans
+                    Implement strategies to reduce air pollution
+                    Manage waste, including hazardous waste
+                    Reduce short-lived climate pollutants</p>
+            </section>
+            
+            <section id="aqi">
+                <h2>Check Air Quality Index (AQI)</h2>
+                <input type="text" id="city" placeholder="Enter City">
+                <button onclick="getAQI()">Check AQI</button>
+                <p id="aqi-result"></p>
+            </section>
+            
+            <footer>
+                <p>&copy; 2025 Air Pollution Awareness</p>
+            </footer>
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    fetch('content.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('home-content').textContent = data.home;
+                            document.getElementById('causes-content').textContent = data.causes;
+                            document.getElementById('solutions-content').textContent = data.solutions;
+                        })
+                        .catch(error => console.error("Error loading content:", error));
+                });
+                
+                function getAQI() {
+            const city = document.getElementById("city").value;
+            const apiKey = "YOUR_API_KEY";
+            const url = `https://api.waqi.info/feed/${city}/?token=${apiKey}`;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "ok") {
+                        document.getElementById("aqi-result").textContent = `AQI in ${city}: ${data.data.aqi}`;
+                    } else {
+                        document.getElementById("aqi-result").textContent = "Invalid city name or data unavailable.";
+                    }
+                })
+                .catch(error => {
+                    document.getElementById("aqi-result").textContent = "Error fetching AQI data.";
+                    console.error("Error:", error);
+                });
+        }
+            </script>
+        </body>
+</html>

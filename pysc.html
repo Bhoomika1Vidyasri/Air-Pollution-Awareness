@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    // Google Earth Engine (GEE) - CART Land Cover Classification
+var studyArea = ee.Geometry.Rectangle([91.0, 25.0, 91.5, 25.5]);
+
+// Load Landsat 8 image collection
+var landsat = ee.ImageCollection('LANDSAT/LC08/C01/T1_TOA')
+  .filterBounds(studyArea)
+  .filterDate('2017-01-01', '2017-12-31')
+  .median();
+
+// Define bands and training data
+var bands = ['B2', 'B3', 'B4', 'B5', 'B6', 'B7'];
+var trainingData = ee.FeatureCollection('users/your_username/training_points');
+
+// Train the CART classifier
+var classifier = ee.Classifier.smileCart().train({
+  features: trainingData,
+  classProperty: 'landcover',
+  inputProperties: bands
+});
+
+// Classify the image
+var classified = landsat.select(bands).classify(classifier);
+
+// Display results
+Map.centerObject(studyArea, 10);
+Map.addLayer(classified, {min: 0, max: 3, palette: ['green', 'red', 'yellow', 'blue']}, 'Land Cover Classification');
+</body>
+</html>
